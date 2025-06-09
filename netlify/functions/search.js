@@ -36,10 +36,9 @@ exports.handler = async (event, context) => {
                 lat: parseInt(item.mapy) / 10000000,
                 lng: parseInt(item.mapx) / 10000000,
                 level: 15,
-                name: item.title.replace(/<[^>]*>/g, ''),
-                url: item.link || `https://map.naver.com/v5/search/${encodeURIComponent(query)}`
+                name: item.title.replace(/<[^>]*>/g, '')
             };
-            
+                        
             return {
                 statusCode: 200,
                 headers,
