@@ -49,6 +49,8 @@ var map = new naver.maps.Map('map', mapOptions); -->
             lng = data.lng;
             name = data.name;
         }
+
+        console.log(data);
         
         return { lat:lat, lng:lng, level:15, name:name, url:url};
     }
