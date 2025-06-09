@@ -38,6 +38,11 @@ var map = new naver.maps.Map('map', mapOptions); -->
         logoControl:false, mapDataControl:false, scaleControl:false
       });
     })();
+
+    var marker = new naver.maps.Marker({
+        position: new naver.maps.LatLng(lat,lng),
+        map: map
+    });
     </script>
 </script>
 </body>
