@@ -39,7 +39,7 @@ var map = new naver.maps.Map('map', mapOptions); -->
     }
     
     (async () => {
-      const {lat,lng,level} = params ? await getCoord(params).catch(()=>fallback) : fallback;
+      const {lat,lng,level,name,url} = params ? await getCoord(params).catch(()=>fallback) : fallback;
       var map = new naver.maps.Map('map', {
         center:new naver.maps.LatLng(lat,lng),
         zoom:level,
