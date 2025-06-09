@@ -21,17 +21,24 @@ var map = new naver.maps.Map('map', mapOptions); -->
 
 <script>
     const pid = new URLSearchParams(location.search).get('pid');
-    const fallback = { lat:37.5665, lng:126.9780, level:15 };   // 실패 시 서울시청
+    const params = new URLSearchParams(location.search);
+    const fallback = { lat:37.5665, lng:126.9780, level:15 , name:"서울시청"};   // 실패 시 서울시청
     
-    async function getCoord(id){
-      /* 비공식 summary 엔드포인트 – 브라우저 CORS 허용 (2025-06 기준) */
-      const url = `https://map.naver.com/v5/api/sites/summary/${id}`;
-      const { data } = await axios.get(url, { headers:{ "referer":"https://map.naver.com" }});
-      return { lat:data.site.location.y, lng:data.site.location.x, level:15 };
+    // async function getCoord(id){
+    //   /* 비공식 summary 엔드포인트 – 브라우저 CORS 허용 (2025-06 기준) */
+    // //   const url = `https://map.naver.com/v5/api/sites/summary/${id}`;
+    // //   const { data } = await axios.get(url, { headers:{ "referer":"https://map.naver.com" }});
+    // //   return { lat:data.site.location.y, lng:data.site.location.x, level:15, name:data.site.name};
+    // }
+    async function getCoord(params){
+        const lat = params.get('lat');
+        const lng = params.get('lng');
+        const name = params.get('name');
+        return { lat:lat, lng:lng, level:15, name:name};
     }
     
     (async () => {
-      const {lat,lng,level} = pid ? await getCoord(pid).catch(()=>fallback) : fallback;
+      const {lat,lng,level} = params ? await getCoord(params).catch(()=>fallback) : fallback;
       new naver.maps.Map('map', {
         center:new naver.maps.LatLng(lat,lng),
         zoom:level,
@@ -42,6 +49,16 @@ var map = new naver.maps.Map('map', mapOptions); -->
         position: new naver.maps.LatLng(lat,lng),
         map: map
       });
+      
+      var contentString = [
+                '<div class="iw_inner">',
+                '   <h3>'+name+'</h3>',
+                '</div>'
+            ].join('');
+
+        var infowindow = new naver.maps.InfoWindow({
+            content: contentString
+        });
     })();
     </script>
 </script>
