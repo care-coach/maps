@@ -35,7 +35,7 @@ var map = new naver.maps.Map('map', mapOptions); -->
       new naver.maps.Map('map', {
         center:new naver.maps.LatLng(lat,lng),
         zoom:level,
-        logoControl:false, mapDataControl:false, scaleControl:false
+        logoControl:false, mapDataControl:true, scaleControl:false
       });
 
       var marker = new naver.maps.Marker({
