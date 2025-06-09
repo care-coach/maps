@@ -34,7 +34,8 @@ var map = new naver.maps.Map('map', mapOptions); -->
         const lat = params.get('lat');
         const lng = params.get('lng');
         const name = params.get('name');
-        return { lat:lat, lng:lng, level:15, name:name};
+        const url = params.get('url');
+        return { lat:lat, lng:lng, level:15, name:name, url:url};
     }
     
     (async () => {
@@ -53,13 +54,14 @@ var map = new naver.maps.Map('map', mapOptions); -->
       var contentString = [
                 '<div class="iw_inner">',
                 '   <h3>'+name+'</h3>',
+                '   <a href="'+url+'" target="_blank">'+url+'</a>',
                 '</div>'
             ].join('');
 
         var infowindow = new naver.maps.InfoWindow({
             content: contentString
         });
-        
+
         infowindow.open(map, marker);
     })();
     </script>
