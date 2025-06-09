@@ -39,8 +39,8 @@ var map = new naver.maps.Map('map', mapOptions); -->
     async function getCoord(params){
         let lat = params.get('lat');
         let lng = params.get('lng');
-        const name = params.get('name');
-        const url = params.get('url');
+        let name = params.get('name');
+        let url = params.get('url');
         
         // name만 있고 좌표가 없는 경우 네이버 검색 API 사용
         if (name && !lat && !lng) {
@@ -48,8 +48,7 @@ var map = new naver.maps.Map('map', mapOptions); -->
             lat = data.lat;
             lng = data.lng;
             name = data.name;
-            
-            console.log(data);
+            url = url;
         }
         
         return { lat:lat, lng:lng, level:15, name:name, url:url};
