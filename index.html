@@ -44,7 +44,10 @@ var map = new naver.maps.Map('map', mapOptions); -->
         
         // name만 있고 좌표가 없는 경우 네이버 검색 API 사용
         if (name && !lat && !lng) {
-            return await getCoordByName(name);
+            const data = await getCoordByName(name);
+            lat = data.lat;
+            lng = data.lng;
+            name = data.name;
         }
         
         return { lat:lat, lng:lng, level:15, name:name, url:url};
