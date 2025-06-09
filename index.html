@@ -22,7 +22,7 @@ var map = new naver.maps.Map('map', mapOptions); -->
 <script>
     const pid = new URLSearchParams(location.search).get('pid');
     const params = new URLSearchParams(location.search);
-    const fallback = { lat:37.5665, lng:126.9780, level:15 , name:"서울시청"};   // 실패 시 서울시청
+    const fallback = { lat:37.5665, lng:126.9780, level:15 , name:"서울시청", url:"https://map.naver.com"};   // 실패 시 서울시청
     
     // async function getCoord(id){
     //   /* 비공식 summary 엔드포인트 – 브라우저 CORS 허용 (2025-06 기준) */
