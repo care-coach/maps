@@ -37,8 +37,8 @@ var map = new naver.maps.Map('map', mapOptions); -->
     }
     
     async function getCoord(params){
-        const lat = params.get('lat');
-        const lng = params.get('lng');
+        let lat = params.get('lat');
+        let lng = params.get('lng');
         const name = params.get('name');
         const url = params.get('url');
         
